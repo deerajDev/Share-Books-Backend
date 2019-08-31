@@ -12,8 +12,9 @@ class Book(models.Model):
     book_name = models.CharField(max_length=30, blank=False, null=False)
     author = models.CharField(max_length=50,blank=True, null=True)
     branch = models.CharField(choices=branchChoices(),max_length=40, blank=False, null=False)
-    semester = models.PositiveIntegerField(choices=yearChoice(), max_length=20,blank=False, null=False,default=1)
+    semester = models.PositiveIntegerField(choices=yearChoice(),blank=False, null=False,default=1)
     cost =models.PositiveIntegerField(blank=False, null=False)
     
     def __str__(self):
         return self.book_name
+

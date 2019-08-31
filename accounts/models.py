@@ -55,8 +55,16 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
         
-#presave method to upper case the college name
 
+class College(models.Model):
+    name =  models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+        
+
+#presave method to upper case the college name
 @receiver(pre_save ,sender=User)
 def capitalizeCollegeName(instance, *args, **kwargs):
     instance.college = instance.college.upper()
+    College.objects.create(name=instance.college.upper())

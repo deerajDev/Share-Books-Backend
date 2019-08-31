@@ -34,4 +34,4 @@ def yearChoice():
 def imageUpload(instance, filename):
     branch = instance.branch
     semester = instance.semester
-    return f'{branch}/{semester}/{filename}'
+    return f'{branch}/{semester}/{instance.id}_{filename}'
