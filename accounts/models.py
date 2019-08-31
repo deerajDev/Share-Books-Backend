@@ -20,6 +20,8 @@ class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
         """Create and save a regular User with the given email and password."""
+        print('entered the create user method')
+        print('='*20)
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(email, password, **extra_fields)
@@ -42,11 +44,11 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(blank=False,null=False, unique=True)
     college = models.CharField(max_length=20,blank=False, null=False)
-    contact_num = models.IntegerField(blank=False, null=False ,validators=[validatePhoneNum], unique=True)
+    contact_num = models.PositiveIntegerField(blank=False, null=False ,validators=[validatePhoneNum], unique=True)
 
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['college','contact_num']
 
     objects = UserManager()
 
