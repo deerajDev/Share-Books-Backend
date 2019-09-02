@@ -25,16 +25,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #THIRD PARTY APPS
+    # THIRD PARTY APPS
     'rest_framework',
     'knox',
-    #MY APPS
+    'corsheaders',
+    # MY APPS
     'accounts',
     'books',
 ]
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -118,11 +120,13 @@ STATICFIELS_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media_cdn')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
 
-#CUSTOM SETTINGS
+# CUSTOM SETTINGS
 AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
