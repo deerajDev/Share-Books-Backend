@@ -1,12 +1,13 @@
 from rest_framework import serializers
 
-from accounts.serializers import UserSerializer
+from accounts.serializers import ContactNumSerializer, UserSerializer
 
+from accounts.models import College
 from .models import Book
 
 
 class BookListSerializer(serializers.ModelSerializer):
-    owner = UserSerializer()
+    owner = ContactNumSerializer()
 
     class Meta:
         model = Book
@@ -19,3 +20,9 @@ class BookCreateSerializer(serializers.ModelSerializer):
         model = Book
         fields = ['image', 'book_name',
                   'branch', 'semester', 'author', 'cost']
+
+
+class CollegeListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = College
+        fields =['id','name']

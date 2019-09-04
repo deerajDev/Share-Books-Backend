@@ -57,7 +57,7 @@ class User(AbstractUser):
         
 
 class College(models.Model):
-    name =  models.CharField(max_length=20)
+    name =  models.CharField(max_length=20,unique=True)
 
     def __str__(self):
         return self.name
@@ -67,4 +67,7 @@ class College(models.Model):
 @receiver(pre_save ,sender=User)
 def capitalizeCollegeName(instance, *args, **kwargs):
     instance.college = instance.college.upper()
-    College.objects.create(name=instance.college.upper())
+    
+    if not (College.objects.filter(name=instance.college)):
+        College.objects.create(name=instance.college)
+    return
