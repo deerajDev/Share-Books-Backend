@@ -22,7 +22,13 @@ class BookCreateSerializer(serializers.ModelSerializer):
                   'branch', 'semester', 'author', 'cost']
 
 
+
+class MyBooksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['id','image', 'book_name', 'branch',
+                  'semester', 'author', 'cost', 'available']
 class CollegeListSerializer(serializers.ModelSerializer):
     class Meta:
         model = College
-        fields =['id','name']
+        fields = ['id', 'name']

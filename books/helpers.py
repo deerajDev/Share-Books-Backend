@@ -37,3 +37,15 @@ def imageUpload(instance, filename):
     semester = instance.semester
     img_path = f'{branch}/{semester}/{filename}'
     return img_path
+
+
+
+def updateBook(instance, new_data):
+    instance.author = new_data.get('author')
+    instance.available = new_data.get('available')
+    instance.book_name = new_data.get('book_name')
+    instance.branch = new_data.get('branch')
+    instance.semester = new_data.get('semester')
+    instance.cost = new_data.get('cost')
+    instance.save()
+    return 
